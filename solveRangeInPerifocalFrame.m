@@ -1,17 +1,21 @@
-function rangeInPQW= solveRangeInPerifocalFrame(semimajor_axis,eccentricity,true_anomaly)
+function rangeInPQW= solveRangeInPerifocalFrame(a,e,v)
 
 %
 % input: semimajor_axis,eccentricity,true_anomaly 3개 스칼라 변수
 % output: rangeInPQW
+% 각도는 모두 rad 단위
 
-mu=398600; %in perifocal coordinate
-semimajor_axis=10000;
-eccentricity=0.1;
-true_anomaly=60;
+% semimajor_axis=a;
+% eccentricity=e;
+% true_anomaly=v;
 
-r= semimajor_axis*(1-eccentricity^2)/(1+eccentricity*cos(true_anomaly));
+a=10000;
+e=0.1;
+v=60*pi/180;
 
-rangeInPQW=[r*cos(true_anomaly); r*sin(true_anomaly); 0];
+r= a*(1-e^2)/(1+e*cos(v));
+
+rangeInPQW=[r*cos(v); r*sin(v); 0];
 
 end
 
